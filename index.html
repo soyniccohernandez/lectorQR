@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lector de QR</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+</head>
+<body>
+    <h1>Lector de Código QR</h1>
+    <div id="reader" style="width: 600px;"></div>
+    <script>
+        // Inicializa el lector de QR
+        function onScanSuccess(decodedText, decodedResult) {
+            // Maneja el texto del QR escaneado
+            alert(`Código QR escaneado: ${decodedText}`);
+        }
+
+        function onScanError(errorMessage) {
+            // Maneja los errores durante el escaneo
+            console.warn(`Error en el escaneo: ${errorMessage}`);
+        }
+
+        // Configura el lector
+        const html5QrCode = new Html5Qrcode("reader");
+
+        html5QrCode.start(
+            { facingMode: "environment" }, // Opcional, puedes cambiar la cámara
+            {
+                fps: 10,
+                qrbox: 250
+            },
+            onScanSuccess,
+            onScanError
+        );
+    </script>
+</body>
+</html>
